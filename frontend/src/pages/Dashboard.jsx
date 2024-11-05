@@ -23,7 +23,7 @@ const Balance = () => {
 
         async function fetchBalance() {
             try {
-                const res = await axios.get('http://localhost:3000/api/v1/account/balance', {
+                const res = await axios.get('https://dhan-kk2v.onrender.com/api/v1/account/balance', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

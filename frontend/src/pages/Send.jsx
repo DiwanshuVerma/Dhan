@@ -28,7 +28,7 @@ export const Send = () => {
 
                     <button onClick={async () => {
                         try{
-                        const res = await axios.post('http://localhost:3000/api/v1/account/transfer',  {
+                        const res = await axios.post('https://dhan-kk2v.onrender.com/api/v1/account/transfer',  {
                             amount,
                             to: id
                         },{

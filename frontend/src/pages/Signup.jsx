@@ -46,7 +46,7 @@ export const Signup = () => {
 
                     <Button onClick={async () => {
                         try {
-                            const res = await fetch('http://localhost:3000/api/v1/user/signup', {
+                            const res = await fetch('https://dhan-kk2v.onrender.com/api/v1/user/signup', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json', // Specify the content type
