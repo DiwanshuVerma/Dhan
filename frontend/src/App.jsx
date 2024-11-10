@@ -13,12 +13,14 @@ const AuthCheck = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    if (token && location.pathname === '/') {
-      navigate('/signin')
-    } else if (token && location.pathname === '/') {
+    if (!token && location.pathname === '/') {
       navigate('/signup')
+    } else if (token && location.pathname === '/') {
+      navigate('/dashboard')
     }
   }, [navigate, location])
+
+  return null
 }
 
 function App() {
