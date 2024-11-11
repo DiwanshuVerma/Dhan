@@ -11,7 +11,7 @@ export const Users = () => {
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebounceFilter(filter)
-        }, 500)
+        }, 300)
 
         return () => {
             clearTimeout(timerId)
@@ -89,14 +89,14 @@ const User = ({ user }) => {
                 <p className="sm:text-2xl text-lg">{user.firstName} {user.lastName}</p>
             </div>
 
-            <div className="flex-1 ml-8 m-2">
+            <div className="flex-1 text-center">
                 <p className="text-base"> <span className="text-green-600">${balance.toFixed(2)}</span></p>
             </div>
 
             <div>
                 <button onClick={() => {
                     navigate('/send?id=' + user._id + '&name=' + user.firstName)
-                }} className="w-full sm:h-[44px] h-8 whitespace-nowrap bg-[#75238a] sm:text-xl text-base sm:p-2 p-1 rounded-md ">
+                }} className="w-full sm:h-[44px] h-8 whitespace-nowrap bg-[#75238a] sm:text-xl text-base sm:p-2 p-1 rounded-md active:bg-[#b54ecf] ">
                     Send Money
                 </button>
             </div>
