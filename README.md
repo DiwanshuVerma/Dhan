@@ -1,4 +1,4 @@
-# Dhan 💸
+# [Dhan 💸](https://dhan-fe.netlify.app/)
 
 Dhan is a full-stack project built to explore and implement secure database transactions using MongoDB. The project focuses on financial transactions with the concept of "do all or do nothing" to ensure data consistency. It allows users to register, sign in, view their dashboard, search for other users, and send money to selected users.
 
@@ -21,5 +21,5 @@ Dhan is a full-stack project built to explore and implement secure database tran
 - **Database**: MongoDB (with Mongoose)
 - **Authentication**: JWT (JSON Web Tokens)
 - **Deployment**:
-  - Backend hosted on **Render
+  - Backend hosted on **Render**
   - Frontend hosted on [Netlify](https://dhan-fe.netlify.app/)
