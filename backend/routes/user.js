@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
     //validating inputs
     if (!success) {
         return res.status(403).json({
-            message: "Invalid inputs"
+            message: "Invalid inputs",
         })
     }
 
