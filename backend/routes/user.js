@@ -34,7 +34,7 @@ router.post('/signup', async (req, res) => {
 
     if (existingUser) {
         return res.status(403).json({
-            message: "Email is already taken"
+            message: "Email is already taken",
         })
     }
     // create a new user
