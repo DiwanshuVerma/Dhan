@@ -42,7 +42,7 @@ export const Send = () => {
                         alert(error.response.data.message)
                         console.log('transfer failed: ', error.response.data)
                     }
-                    }} className="w-full bg-[#75238a] text-xl p-2 rounded ">
+                    }} className="w-full bg-[#75238a] active:bg-[#b54ecf] text-xl p-2 rounded ">
                         Initiate transfer
                     </button>
                 </div>
