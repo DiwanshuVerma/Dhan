@@ -11,6 +11,29 @@ export const Signin = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
+    const handleForm = async (e) => {
+        e.preventDefault()
+
+        try {
+            const res = await axios.post('https://dhan-kk2v.onrender.com/api/v1/user/signin', {
+                username,
+                password
+            })
+
+            localStorage.setItem('token', res.data.token)
+            console.log('Token: ', res.data.token)
+            navigate('/dashboard')
+        } catch (error) {
+
+            if (error.response) {
+                console.log('Signup failed: ', error.response.data.message)
+                alert(error.response.data.message)
+            } else {
+                console.log('Signup failed: ', error.message)
+            }
+
+        }
+    }
     return (
         <div className="relative min-w-screen h-screen bg-slate-950 overflow-hidden flex justify-center items-center z-10">
 
@@ -22,37 +45,19 @@ export const Signin = () => {
             <div className="bg-[#16112EB5] h-3/4 min-w-[33%] flex rounded-xl flex-col justify-around text-white p-6">
                 <h1 className="text-5xl font-medium">Welcome Back</h1>
 
-                <div className="bg-transparent flex flex-col gap-5">
-                    <InputBox onChange={(e) => {
-                        setUsername(e.target.value)
-                    }} type={'email'} placeholder={'Email'} />
+                <div>
 
-                    <InputBox onChange={(e) => {
-                        setPassword(e.target.value)
-                    }} type={'password'} placeholder={'Password'} />
+                    <form onSubmit={handleForm} className="bg-transparent flex flex-col gap-5">
+                        <InputBox onChange={(e) => {
+                            setUsername(e.target.value)
+                        }} type={'email'} placeholder={'Email'} />
 
-                    <Button onClick={async () => {
-                        try {
-                            const res = await axios.post('https://dhan-kk2v.onrender.com/api/v1/user/signin', {
-                                username,
-                                password
-                            })
+                        <InputBox onChange={(e) => {
+                            setPassword(e.target.value)
+                        }} type={'password'} placeholder={'Password'} />
 
-                            localStorage.setItem('token', res.data.token)
-                            console.log('Token: ', res.data.token)
-                            navigate('/dashboard')
-                        } catch (error) {
-
-                            if (error.response) {
-                                console.log('Signup failed: ', error.response.data.message)
-                                alert(error.response.data.message)
-                            } else {
-                                console.log('Signup failed: ', error.message)
-                            }
-
-                        }
-
-                    }} label={'Signin'} />
+                        <Button label={'Signin'} />
+                    </form>
                 </div>
 
                 <BottomInfo label={"Don't have an account?"} btnText={'Signup'} to='/Signup' />

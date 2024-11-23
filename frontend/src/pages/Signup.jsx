@@ -7,13 +7,48 @@ import { useNavigate } from "react-router-dom"
 
 export const Signup = () => {
 
-    
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
+
+    const handleForm = async (e) => {
+        e.preventDefault()
+
+        try {
+            const res = await fetch('https://dhan-kk2v.onrender.com/api/v1/user/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    username: email,
+                    password
+                })
+            }
+            )
+
+            // check if the response is successful
+            const json = await res.json()
+
+            if (!res.ok) {
+                alert(json.message)
+                throw new Error(`Error: ${res.status} ${res.statusText} ${json.message}`)
+            }
+
+            localStorage.setItem('token', json.token)
+            console.log(json.message)
+            navigate('/dashboard')
+        } catch (error) {
+            console.log('Signup failed: ', error.message)
+        }
+    }
+
 
     return (
         <div className="relative min-w-screen h-screen bg-slate-950 overflow-hidden flex justify-center items-center z-10">
@@ -27,54 +62,27 @@ export const Signup = () => {
                 <h1 className="text-5xl font-medium">Create Account</h1>
 
 
-                <div className="bg-transparent flex flex-col gap-3">
-                    <InputBox onChange={(e) => {
-                        setFirstName(e.target.value)
-                    }} type={'text'} placeholder={' name'} />
+                <div>
 
-                    <InputBox onChange={(e) => {
-                        setLastName(e.target.value)
-                    }} type={'text'} placeholder={'Last name'} />
+                    <form onSubmit={handleForm} className="bg-transparent flex flex-col gap-3">
+                        <InputBox onChange={(e) => {
+                            setFirstName(e.target.value)
+                        }} type={'text'} placeholder={' name'} />
 
-                    <InputBox onChange={(e) => {
-                        setEmail(e.target.value)
-                    }} type={'email'} placeholder={'Email'} />
+                        <InputBox onChange={(e) => {
+                            setLastName(e.target.value)
+                        }} type={'text'} placeholder={'Last name'} />
 
-                    <InputBox onChange={(e) => {
-                        setPassword(e.target.value)
-                    }} type={'password'} placeholder={'Password'} />
+                        <InputBox onChange={(e) => {
+                            setEmail(e.target.value)
+                        }} type={'email'} placeholder={'Email'} />
 
-                    <Button onClick={async () => {
-                        try {
-                            const res = await fetch('https://dhan-kk2v.onrender.com/api/v1/user/signup', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json', // Specify the content type
-                                  },
-                                body: JSON.stringify({
-                                    firstName,
-                                    lastName,
-                                    username: email,
-                                    password
-                                })
-                            }
-                            )
+                        <InputBox onChange={(e) => {
+                            setPassword(e.target.value)
+                        }} type={'password'} placeholder={'Password'} />
 
-                            // check if the response is successful
-                            const json = await res.json()
-
-                            if (!res.ok) {
-                                alert(json.message)
-                                throw new Error(`Error: ${res.status} ${res.statusText} ${json.message}`)
-                            }
-                            
-                            localStorage.setItem('token', json.token)
-                            console.log(json.message)
-                            navigate('/dashboard')
-                        } catch (error) {
-                            console.log('Signup failed: ', error.message)
-                        }
-                    }} label={'Signup'} />
+                        <Button label={'Signup'} />
+                    </form>
                 </div>
 
 
