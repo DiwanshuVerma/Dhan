@@ -7,7 +7,7 @@ export const Appbar = () => {
     
     useEffect(() => {
         async function fetchUserDetails(){
-            const res = await axios.get('https://dhan-kk2v.onrender.com/api/v1/user/me', {
+            const res = await axios.get('https://dhan-qbwh.onrender.com/api/v1/user/me', {
                 headers : {
                     authorization: `Bearer ${token}`
                 }

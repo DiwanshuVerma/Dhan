@@ -19,7 +19,7 @@ export const Users = () => {
     }, [filter])
 
     useEffect(() => {
-        axios.get('https://dhan-kk2v.onrender.com/api/v1/user/bulk?filter=' + debounceFilter)
+        axios.get('https://dhan-qbwh.onrender.com/api/v1/user/bulk?filter=' + debounceFilter)
             .then(res => {
                 setUsers(res.data.user)
             })
@@ -56,7 +56,7 @@ const User = ({ user }) => {
     // fetch balance of each user by sending their id as query
     useEffect(() => {
         async function fetchBal() {
-            const res = await axios.get(`https://dhan-kk2v.onrender.com/api/v1/account/balance?userId=${user._id}`, {
+            const res = await axios.get(`https://dhan-qbwh.onrender.com/api/v1/account/balance?userId=${user._id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -70,7 +70,7 @@ const User = ({ user }) => {
     // fetch logged user to disable send money button to himself
     useEffect(() => {
         async function fetchUserId(){
-            const res = await axios.get('https://dhan-kk2v.onrender.com/api/v1/user/me', {
+            const res = await axios.get('https://dhan-qbwh.onrender.com/api/v1/user/me', {
                 headers : {
                     authorization: `Bearer ${token}`
                 }

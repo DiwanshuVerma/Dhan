@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.use('/api/v1', mainRouter)
 
-const url = "https://dhan-kk2v.onrender.com/api/v1"
+const url = "https://dhan-qbwh.onrender.com"
 
 setInterval(async () => {
     await fetch(url)
