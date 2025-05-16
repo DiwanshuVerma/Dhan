@@ -4,6 +4,7 @@ import { BottomInfo } from "../components/BottomInfo"
 import { Button } from "../components/Button"
 import { InputBox } from "../components/InputBox"
 import { useNavigate } from "react-router-dom"
+import Loader from "../components/Loader"
 
 export const Signup = () => {
 
@@ -12,11 +13,13 @@ export const Signup = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loader, setLoader] = useState(false)
 
     const navigate = useNavigate()
 
     const handleForm = async (e) => {
         e.preventDefault()
+        setLoader(true)
 
         try {
             const res = await fetch('https://dhan-qbwh.onrender.com/api/v1/user/signup', {
@@ -39,17 +42,22 @@ export const Signup = () => {
             if (!res.ok) {
                 alert(json.message)
                 throw new Error(`Error: ${res.status} ${res.statusText} ${json.message}`)
+                setLoader(false)
+
             }
 
             localStorage.setItem('token', json.token)
+            setLoader(false)
+
             console.log(json.message)
             navigate('/dashboard')
         } catch (error) {
             console.log('Signup failed: ', error.message)
+            setLoader(false)
         }
     }
 
-
+    if (loader) return <Loader />
     return (
         <div className="relative min-w-screen h-screen bg-slate-950 overflow-hidden flex justify-center items-center z-10">
 

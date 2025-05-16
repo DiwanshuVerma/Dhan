@@ -4,15 +4,18 @@ import { Button } from "../components/Button"
 import { InputBox } from "../components/InputBox"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Loader from "../components/Loader"
 
 export const Signin = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [loader, setLoader] = useState(false)
     const navigate = useNavigate()
 
     const handleForm = async (e) => {
         e.preventDefault()
+        setLoader(true)
 
         try {
             const res = await axios.post('https://dhan-qbwh.onrender.com/api/v1/user/signin', {
@@ -22,18 +25,26 @@ export const Signin = () => {
 
             localStorage.setItem('token', res.data.token)
             console.log('Token: ', res.data.token)
+
+            setLoader(false)
+
             navigate('/dashboard')
         } catch (error) {
 
             if (error.response) {
                 console.log('Signup failed: ', error.response.data.message)
                 alert(error.response.data.message)
+            setLoader(false)
+
             } else {
                 console.log('Signup failed: ', error.message)
             }
 
         }
     }
+
+    if(loader) return <Loader />
+
     return (
         <div className="relative min-w-screen h-screen bg-slate-950 overflow-hidden flex justify-center items-center z-10">
 
