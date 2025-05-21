@@ -28,7 +28,7 @@ export const Send = () => {
 
                     <button onClick={async () => {
                         try{
-                        const res = await axios.post('https://dhan-qbwh.onrender.com/api/v1/account/transfer',  {
+                        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/account/transfer`,  {
                             amount,
                             to: id
                         },{

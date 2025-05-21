@@ -18,7 +18,7 @@ export const Signin = () => {
         setLoader(true)
 
         try {
-            const res = await axios.post('https://dhan-qbwh.onrender.com/api/v1/user/signin', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/signin`, {
                 username,
                 password
             })

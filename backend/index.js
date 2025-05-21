@@ -3,13 +3,14 @@ const cors = require('cors')
 const app = express()
 const port = 3000;
 const mainRouter = require('./routes/index')
+require('dotenv').config()
 
 app.use(cors())
 app.use(express.json())
 
 app.use('/api/v1', mainRouter)
 
-const url = "https://dhan-qbwh.onrender.com"
+const url = process.env.backendURI
 
 setInterval(async () => {
     await fetch(url)

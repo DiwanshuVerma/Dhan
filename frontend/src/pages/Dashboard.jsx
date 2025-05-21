@@ -25,7 +25,7 @@ const Balance = () => {
 
         async function fetchBalance() {
             try {
-                const res = await axios.get('https://dhan-qbwh.onrender.com/api/v1/account/balance', {
+                const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/account/balance`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

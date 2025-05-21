@@ -22,7 +22,7 @@ export const Signup = () => {
         setLoader(true)
 
         try {
-            const res = await fetch('https://dhan-qbwh.onrender.com/api/v1/user/signup', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/user/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Specify the content type
