@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export const Appbar = () => {
-    const [firstName, setFirstName] = useState('User')
+    const [firstName, setFirstName] = useState('')
     const token = localStorage.getItem('token')
     
     useEffect(() => {
@@ -26,7 +26,7 @@ export const Appbar = () => {
                 </div>
 
                 <div className="flex items-center gap-4 text-xl">
-                    <p>Hello 🖐, {firstName}</p>
+                    <p>Hello 🖐, {firstName || "Anon"}</p>
                     <button className="border-none bg-[#2c2050] rounded-full w-9 h-9 p-6 text-2xl cursor-pointer flex items-center justify-center uppercase">{firstName[0]}</button>
                 </div>
             </div>
